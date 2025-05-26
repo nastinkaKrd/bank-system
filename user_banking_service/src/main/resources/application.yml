@@ -1,0 +1,40 @@
+server:
+  port: 8080
+logging:
+  level:
+    org:
+      springframework:
+        security:
+          oauth2: DEBUG
+
+spring:
+  jpa:
+    hibernate.ddl-auto: validate
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/bank_system_testing_db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  liquibase:
+    change-log: classpath:/db/changelog/2025_05_24_init_db.yml
+    enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 234057479201-javh66u3omkt19cun5iccf7618ea72co.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: https://e36b-46-172-128-104.ngrok-free.app/oauth2/callback
+            scope: profile, email
+springdoc:
+  swagger-ui:
+    path: swagger-ui
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
+
+myapp:
+  secret: ${SECRET_KEY:404D635166546A576D5A7134743777217A25432A462D4A614E645267556B5870}
+  clientId: ${CLIENT_ID:234057479201-javh66u3omkt19cun5iccf7618ea72co.apps.googleusercontent.com}
+  clientSecret: ${CLIENT_SECRET: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}
+  redirectedUrl: ${REDIRECTED_URL:https://e36b-46-172-128-104.ngrok-free.app/oauth2/callback}
